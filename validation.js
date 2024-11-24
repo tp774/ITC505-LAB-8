@@ -54,9 +54,30 @@ document.getElementById('secureForm').addEventListener('submit', function (e) {
         isValid = false;
     }
 
-    // Simulate form submission if valid
+    // If all validations pass, display the entered data
     if (isValid) {
         alert('Form submitted successfully!');
-        console.log("Form data:", { firstName, lastName, email, password });
+
+        // Display the form data
+        const resultContainer = document.createElement('div');
+        resultContainer.style.marginTop = '20px';
+        resultContainer.style.padding = '10px';
+        resultContainer.style.border = '1px solid #ccc';
+        resultContainer.style.borderRadius = '8px';
+        resultContainer.style.backgroundColor = '#f9f9f9';
+
+        resultContainer.innerHTML = `
+            <h3>Form Data Submitted:</h3>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Password:</strong> ${'*'.repeat(password.length)}</p>
+        `;
+
+        // Append the result container to the body (or any specific location)
+        const formElement = document.getElementById('secureForm');
+        formElement.insertAdjacentElement('afterend', resultContainer);
+
+        console.log("Form data submitted:", { firstName, lastName, email, password });
     }
 });
